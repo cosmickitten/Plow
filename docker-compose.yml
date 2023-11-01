@@ -32,8 +32,8 @@ services:
     restart: always
     build: 
       context: ./django-backend
-      ports:
-        - "8000:8000"
+    ports:
+      - "8000:8000"
     command: >
       bash -c "
         python manage.py makemigrations &&
