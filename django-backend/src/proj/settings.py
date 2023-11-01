@@ -16,8 +16,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = Path(BASE_DIR).resolve().parent.parent
 
-
 import os
+
 from dotenv import load_dotenv
 dotenv_path = BASE_DIR / 'settings' / '.env'
 load_dotenv(dotenv_path)
@@ -31,7 +31,7 @@ load_dotenv(dotenv_path)
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 SECRET_KEY = 'django-insecure-sk&2cwuynsicaluqh_e$r@-ad2p)4+g%at+&cafo$2q0@^0*#6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
