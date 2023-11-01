@@ -37,6 +37,7 @@ services:
       - "8000:8000"
     volumes:
       - ./persistentdata/db/sqlite:/django-backend/src/db
+      - ./persistentdata/settings:/django-backend/src/settings
     image: djangobackend
 
 

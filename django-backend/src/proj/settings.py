@@ -19,9 +19,8 @@ ROOT_DIR = Path(BASE_DIR).resolve().parent.parent
 
 import os
 from dotenv import load_dotenv
-dotenv_path = os.path.join(ROOT_DIR, '.env')
-if os.path.exists(dotenv_path):
-    load_dotenv(dotenv_path)
+dotenv_path = BASE_DIR / 'settings' / '.env'
+load_dotenv(dotenv_path)
 
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SECURE_SSL_REDIRECT = True
