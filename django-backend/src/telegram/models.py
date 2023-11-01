@@ -7,7 +7,7 @@ class Channel(models.Model):
     
 
     def __str__(self) -> str:
-        return self.name
+        return str(self.channal)
 
     class Meta:
         verbose_name = 'Канал'
