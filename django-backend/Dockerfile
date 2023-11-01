@@ -1,5 +1,5 @@
 FROM python:3.10
-WORKDIR /app
+WORKDIR /django-backend
 RUN apt-get update -y
 RUN apt-get upgrade -y
 COPY ./requirements.txt ./

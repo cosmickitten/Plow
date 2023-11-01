@@ -30,7 +30,7 @@ services:
   #     - ./persistentdata/db/sqlite:/
   django-backend:
     restart: always
-    build: 
+    build:
       context: ./django-backend
     ports:
       - "8000:8000"
