@@ -17,6 +17,7 @@ services:
   redis:
     image: redis
     restart: always
+    
 
 
   # django-backend:
@@ -42,7 +43,7 @@ services:
     image: djangobackend
 
 
-  worker:
+  celeryworker:
     restart: always
     build: 
       context: ./django-backend
@@ -50,6 +51,8 @@ services:
     volumes:
       - ./persistentdata/hugging_face_cache:/django-backend/hugging_face_cache
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
+    image: celeryworker
+    
   # postgresql-db:
   #   restart: always
   #   image: postgres
