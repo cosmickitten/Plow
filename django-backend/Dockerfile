@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM rodrigocaus/python-transformers:3.10-slim-4.29-torch-cpu
 WORKDIR /django-backend
 RUN apt-get update -y
 RUN apt-get upgrade -y
