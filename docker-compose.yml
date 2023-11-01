@@ -46,10 +46,10 @@ services:
   worker:
     restart: always
     build: 
-      context: ./django-backend
+      context: ./worker
     volumes:
       - ./persistentdata/hugging_face_cache:/django-backend/hugging_face_cache
-    command: ['celery',  '-A', 'backend', 'worker' ]
+    command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
   # postgresql-db:
   #   restart: always
   #   image: postgres
