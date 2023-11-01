@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bookworm
+FROM rodrigocaus/python-transformers:3.10-slim-4.29-torch-cpu
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends gcc \
@@ -6,6 +6,6 @@ RUN apt-get update \
     && pip install --no-cache-dir "transformers[torch]==4.26"
 WORKDIR /django-backend
 COPY ./requirements.txt ./
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 COPY ./src ./src
 
