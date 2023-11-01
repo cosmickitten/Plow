@@ -40,6 +40,8 @@ services:
         python ./src/manage.py makemigrations &&
         python ./src/manage.py migrate
       "
+    volumes:
+      - ./persistentdata/db/sqlite:/django-backend/src/db
     image: djangobackend
 
 
