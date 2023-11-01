@@ -48,6 +48,8 @@ services:
       dockerfile: Dockerfile.torch-cpu
     volumes:
       - ./persistentdata/hugging_face_cache:/django-backend/hugging_face_cache
+      - ./persistentdata/db/sqlite:/django-backend/src/db
+      
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
     image: celeryworker
     
