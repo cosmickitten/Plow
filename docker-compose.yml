@@ -46,7 +46,8 @@ services:
   worker:
     restart: always
     build: 
-      context: ./worker
+      context: ./django-backend
+      dockerfile: ./django-backend/Dockerfile.torch-cpu
     volumes:
       - ./persistentdata/hugging_face_cache:/django-backend/hugging_face_cache
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
