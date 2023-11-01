@@ -52,6 +52,14 @@ services:
       
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
     image: celeryworker
+
+  celery-beats:
+    restart: always
+    build: 
+      context: ./django-backend
+    volumes: 
+      - ./persistentdata/db/sqlite:/django-backend/src/db
+    command: ['celery', '--workdir=./src', '-A', 'proj', 'beat', '-l', 'INFO', '--scheduler', 'django_celery_beat.schedulers:DatabaseScheduler']
     
   # postgresql-db:
   #   restart: always
