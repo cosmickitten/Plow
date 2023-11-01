@@ -32,7 +32,7 @@ load_dotenv(dotenv_path)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = 'django-insecure-sk&2cwuynsicaluqh_e$r@-ad2p)4+g%at+&cafo$2q0@^0*#6'
+#SECRET_KEY = 'django-insecure-sk&2cwuynsicaluqh_e$r@-ad2p)4+g%at+&cafo$2q0@^0*#6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -152,8 +152,8 @@ MEDIA_ROOT = '/var/www/media'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-#CELERY_BROKER_URL =  os.getenv("CELERY_BROKER_URL")
-CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_BROKER_URL =  os.getenv("CELERY_BROKER_URL")
+#CELERY_BROKER_URL = 'redis://redis:6379'
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_BROKER_CONNECTION_RETRY =True
 
