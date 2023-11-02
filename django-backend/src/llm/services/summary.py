@@ -1,6 +1,7 @@
 import logging
 import os
 from transformers import MBartTokenizer, MBartForConditionalGeneration
+from transformers import AutoTokenizer, T5ForConditionalGeneration
 from django.conf import settings
 
 
@@ -15,9 +16,10 @@ class AI():
             cls.instance = super(AI, cls).__new__(cls)
         return cls.instance
 
-    def __init__(self) -> None:
-        logger.info('Иницилизация языковой модели mbart_ru_sum_gazeta')
-        self.model_name = "IlyaGusev/mbart_ru_sum_gazeta"
+    def __init__(self,model_name) -> None:
+        #logger.info('Иницилизация языковой модели mbart_ru_sum_gazeta')
+        #self.model_name = "IlyaGusev/mbart_ru_sum_gazeta"
+        self.model_name = "IlyaGusev/rut5_base_sum_gazeta"
         self.tokenizer = MBartTokenizer.from_pretrained(
             self.model_name, cache_dir = os.path.join(settings.BASE_DIR,'huggingface_cache'))
         self.model = MBartForConditionalGeneration.from_pretrained(
