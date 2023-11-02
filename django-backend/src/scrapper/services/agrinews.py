@@ -17,7 +17,7 @@ class Agrinews(Crowler):
         self.URL = 'https://agri-news.ru/novosti/'
 
     def convert_date(self, datetime_str):
-        locale.setlocale(locale.LC_ALL, 'ru_RU')
+        locale.setlocale(locale.LC_ALL, 'ru_RU.UTF-8')
         datetime_str = datetime_str.split(' ')
         month = {'января': 'январь',
                  'февраля': 'февраль',

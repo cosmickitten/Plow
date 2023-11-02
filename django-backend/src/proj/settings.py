@@ -135,7 +135,7 @@ TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
-USE_TZ = False
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -171,11 +171,11 @@ LOGGING = {
         },
     },
     "handlers": {
-        "console": {
-            "level": "INFO",
-            "class": "logging.StreamHandler",
-            "formatter": "simple",
-        },
+        # "console": {
+        #     "level": "INFO",
+        #     "class": "logging.StreamHandler",
+        #     "formatter": "simple",
+        # },
 
         "file": {
             "class": "logging.FileHandler",
@@ -185,7 +185,7 @@ LOGGING = {
     },
     "loggers": {
         "main": {
-            "handlers": ["console"],
+            # "handlers": ["console"],
             "propagate": True,
             "level": "INFO",
         },
