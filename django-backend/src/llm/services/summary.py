@@ -16,7 +16,7 @@ class AI():
             cls.instance = super(AI, cls).__new__(cls)
         return cls.instance
 
-    def __init__(self,model_name) -> None:
+    def __init__(self) -> None:
         #logger.info('Иницилизация языковой модели mbart_ru_sum_gazeta')
         #self.model_name = "IlyaGusev/mbart_ru_sum_gazeta"
         self.model_name = "IlyaGusev/rut5_base_sum_gazeta"
