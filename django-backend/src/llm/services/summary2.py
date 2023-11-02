@@ -6,10 +6,10 @@ from transformers import AutoTokenizer, T5ForConditionalGeneration
 logger = logging.getLogger('main')
 
 
-class rut5_base_sum_gazeta():
+class AI2():
     def __new__(cls):
         if not hasattr(cls, 'instance'):
-            cls.instance = super(rut5_base_sum_gazeta, cls).__new__(cls)
+            cls.instance = super(AI2, cls).__new__(cls)
         return cls.instance
     
     def __init__(self) -> None:

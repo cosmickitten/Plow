@@ -8,6 +8,7 @@ from scrapper.models import Article, Domain, Category
 from .utils import  Utils
 
 from llm.services.summary import AI
+from llm.services.summary2 import  AI2
 
 
 logger = logging.getLogger('main')
@@ -22,7 +23,7 @@ class DB():
         logger.debug(
             f'url= {url}, site = {url}, time = {str(time)}')
         
-        ai = AI()
+        ai = AI2()
         logger.debug(f'{url} не найден в БД, запись.')
         summary = ai.summarize(article_text)
         a = Article(title=title, intro=intro, content=content,summary=summary,is_summarized = True, time=time, url=url,category_id = category_id,domain_id=domain_id)
