@@ -19,9 +19,10 @@ class tgBot():
     def run(self):
         bot = telebot.TeleBot(settings.TOKEN,parse_mode='HTML')
         unpublised = Article.objects.filter(is_published=False)
-        article = unpublised[0]
-        db = DB()
-        news = f'<b>{article.title}</b>\n\n{article.summary}\n\n\n<a href="{article.url}">Читать источник</a>'
-        categoty_id = str(article.category_id)
-        bot.send_message(channals[categoty_id],news)
-        db.set_published(article)
+        if len(unpublised) > 0:
+            article = unpublised[0]
+            db = DB()
+            news = f'<b>{article.title}</b>\n\n{article.summary}\n\n\n<a href="{article.url}">Читать источник</a>'
+            categoty_id = str(article.category_id)
+            bot.send_message(channals[categoty_id],news)
+            db.set_published(article)
