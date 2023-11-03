@@ -17,7 +17,7 @@ logger = logging.getLogger('main')
 class tgBot():
     def __init__(self) -> None:
         self.channals = {'1' :settings.ID_CHANNAL_APK}
-        self.TOKEN = settings.TOKEN
+        self.TOKEN = '6743554482:AAHLzpjEdO49BTjsxm5SS3uviYIrRBm5bng'
     
     def run(self):
         
