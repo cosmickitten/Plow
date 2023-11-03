@@ -193,3 +193,10 @@ LOGGING = {
 
     },
 }
+
+
+
+#TELEGRAM
+TOKEN =  os.getenv('TOKEN')
+ID_CHANNAL_APK = os.getenv('ID_CHANNAL')
+

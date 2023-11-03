@@ -18,15 +18,13 @@ utility = Utils()
 
 class DB():
 
-    def save_(self, url, domain_id, title, intro, content,article_text, time,category_id):
+    def save_(self, url, domain_id, title, intro, content,time,category_id):
 
         logger.debug(
             f'url= {url}, site = {url}, time = {str(time)}')
         
-        ai = AI2()
-        logger.debug(f'{url} не найден в БД, запись.')
-        summary = ai.summarize(article_text)
-        a = Article(title=title, intro=intro, content=content,summary=summary,is_summarized = True, time=time, url=url,category_id = category_id,domain_id=domain_id)
+
+        a = Article(title=title, intro=intro, content=content,is_summarized = False, time=time, url=url,category_id = category_id,domain_id=domain_id)
         #article_text = a.intro + a.content
         
 

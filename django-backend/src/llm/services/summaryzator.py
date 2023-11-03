@@ -1,24 +1,19 @@
-import logging
 import os
 from django.conf import settings
-from transformers import AutoTokenizer, T5ForConditionalGeneration
-
-logger = logging.getLogger('main')
 
 
-class AI2():
+class AI():
     def __new__(cls):
         if not hasattr(cls, 'instance'):
-            cls.instance = super(AI2, cls).__new__(cls)
+            cls.instance = super(AI, cls).__new__(cls)
         return cls.instance
     
     def __init__(self) -> None:
-        logger.info('Иницилизация языковой модели rut5_base_sum_gazeta')
-        self.model_name = "IlyaGusev/rut5_base_sum_gazeta"
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name, cache_dir = os.path.join(settings.BASE_DIR,'huggingface_cache'))
-        self.model = T5ForConditionalGeneration.from_pretrained(
-            self.model_name, cache_dir = os.path.join(settings.BASE_DIR,'huggingface_cache'))
+        self.model_name :str
+        self.cache_dir = os.path.join(settings.BASE_DIR,'huggingface_cache')
+        self.tokenizer :any
+        self.model:any
+    
 
     def glue_text(self,title,intro,content):
         article_text= title + intro + content
@@ -42,3 +37,4 @@ class AI2():
         )[0]
         summary = self.tokenizer.decode(output_ids, skip_special_tokens=True)
         return summary
+    
