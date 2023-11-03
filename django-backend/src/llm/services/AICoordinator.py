@@ -1,5 +1,8 @@
 from .rut5_base_sum_gazeta import rut5_base_sum_gazeta
 from scrapper.models import Article
+import logging
+logger = logging.getLogger('main')
+
 
 
 class AICoordinator():
@@ -12,6 +15,8 @@ class AICoordinator():
             article_text = str(article.title) +  str(article.intro)  +  str(article.content)
             article.summary  = ai.summarize(article_text=article_text)
             article.save()
+            logger.info('AICoordinator: Успех!')
+
             
 
 
