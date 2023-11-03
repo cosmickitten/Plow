@@ -7,9 +7,6 @@ from scrapper.models import Article, Domain, Category
 
 from .utils import  Utils
 
-from llm.services.summary import AI
-from llm.services.summary2 import  AI2
-
 
 logger = logging.getLogger('main')
 
