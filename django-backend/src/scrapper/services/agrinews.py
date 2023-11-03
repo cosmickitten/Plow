@@ -38,7 +38,7 @@ class Agrinews(Crowler):
             if datetime_str[1].strip() == key:
                 datetime_str[1] = value
         datetime_str = ' '.join(str(x) for x in datetime_str)
-        datetime_obj = datetime.strptime(datetime_str, "%-d %B %Y")
+        datetime_obj = datetime.strptime(datetime_str, "%#d %B %Y")
         return datetime_obj
 
     def get_links(self, page):
