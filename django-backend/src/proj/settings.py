@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'scrapper.apps.ScrapperConfig',
     'telegram.apps.TelegramConfig',
+    'llm.apps.LlmConfig',
 ]
 
 MIDDLEWARE = [
