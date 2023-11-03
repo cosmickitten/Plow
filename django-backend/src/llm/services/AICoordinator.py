@@ -4,12 +4,13 @@ from scrapper.models import Article
 
 class AICoordinator():
 
-    def run():
+    def run(self):
         ai = rut5_base_sum_gazeta
-        unsummarized = Article.objects.get(is_summarized = False)
-        article_text = ai.glue_text(str(unsummarized.title) + str(unsummarized.intro) + str(unsummarized.content))
-        unsummarized.summary  = ai.summarize(article_text)
-        unsummarized.save()
+        unsummarized = Article.objects.filter(is_summarized = False)
+        article = unsummarized[0]
+        article_text = ai.glue_text(str(article.title) + str(article.intro) + str(article.content))
+        article.summary  = ai.summarize(article_text)
+        article.save()
         
 
 
