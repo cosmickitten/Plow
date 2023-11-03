@@ -18,6 +18,7 @@ class tgBot():
     def __init__(self) -> None:
         self.channals = {'1' :settings.ID_CHANNAL_APK}
         self.TOKEN = '6743554482:AAHLzpjEdO49BTjsxm5SS3uviYIrRBm5bng'
+        self.chat_id = '599272752'
     
     def run(self):
         
@@ -27,6 +28,7 @@ class tgBot():
             article = unpublised[0]
             db = DB()
             news = f'<b>{article.title}</b>\n\n{article.summary}\n\n\n<a href="{article.url}">Читать источник</a>'
-            categoty_id = str(article.category_id)
-            bot.send_message(self.channals[categoty_id],news)
+            category_id = str(article.category_id)
+            #bot.send_message(self.channals[categoty_id],news)
+            bot.send_message(self.chat_id,news)
             db.set_published(article)
