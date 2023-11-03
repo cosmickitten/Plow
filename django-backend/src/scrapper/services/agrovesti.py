@@ -60,7 +60,6 @@ class Agrovesti(Crowler):
                         'title':title,
                         'intro':intro, 
                         'content':content, 
-                        'article_text' : title + intro + content,
                         'time':datetime_obj,
                         'category_id': 1,
                         }
