@@ -15,9 +15,9 @@ class AI():
         self.model:any
     
 
-    def glue_text(self,title,intro,content):
-        article_text= title + intro + content
-        return article_text
+    # def glue_text(self,title,intro,content):
+    #     article_text = title + intro + content
+    #     return article_text
 
 
 
