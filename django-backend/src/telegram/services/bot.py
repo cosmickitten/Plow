@@ -16,9 +16,8 @@ logger = logging.getLogger('main')
 
 class tgBot():
     def __init__(self) -> None:
-        from django.conf import settings
         self.channals = {'1' :settings.ID_CHANNAL_APK}
-        self.TOKEN = settings.TOKEN
+        self.TOKEN = '6743554482:AAHLzpjEdO49BTjsxm5SS3uviYIrRBm5bng'
     
     def run(self):
         
@@ -29,6 +28,6 @@ class tgBot():
             db = DB()
             news = f'<b>{article.title}</b>\n\n{article.summary}\n\n\n<a href="{article.url}">Читать источник</a>'
             category_id = str(article.category_id)
-            bot.send_message(self.channals[category_id],news)
+            bot.send_message('599272752',news)
             
             db.set_published(article)
