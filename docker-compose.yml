@@ -38,6 +38,9 @@ services:
     volumes:
       - ./persistentdata/settings:/django-backend/src/settings
     image: djangobackend
+    depends_on:
+      - postgresql-db
+      - redis
 
 
   celeryworker:
@@ -51,13 +54,21 @@ services:
     - ./persistentdata/settings/.env
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
     image: celeryworker
+    depends_on:
+      - postgresql-db
+      - redis
+
 
   celery-beats:
     restart: always
     build: 
       context: ./django-backend
     command: ['celery', '--workdir=./src', '-A', 'proj', 'beat', '-l', 'INFO', '--scheduler', 'django_celery_beat.schedulers:DatabaseScheduler']
-    
+    depends_on:
+      - postgresql-db
+      - redis
+
+
   postgresql-db:
     restart: always
     image: postgres
