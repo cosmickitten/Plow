@@ -42,9 +42,10 @@ class RG(Crowler):
             article = soup.find("div", class_=re.compile('Page_main'))
             try:
                 if article is None:
-             except AttributeError as e:
+                    article = soup.find("main", class_=re.compile('PageArticle_main'))
+            except AttributeError as e:
                 logger.info(f'{url} Attribute error {e}')
-            article = soup.find("main", class_=re.compile('PageArticle_main'))
+            
             title = article.find('h1', class_=re.compile('PageArticleTitle_title')).text
             datetime_str = article.find("span", class_=re.compile("PageArticleTitle_day")).string
             intro = article.find('h3', class_=re.compile('PageArticleTitle_lead')).text
