@@ -6,6 +6,7 @@ import telebot
 from scrapper.models import Article
 from scrapper.services.db import DB
 from random import randint
+import os
 
 
 
@@ -16,8 +17,8 @@ logger = logging.getLogger('main')
 
 class tgBot():
     def __init__(self) -> None:
-        self.channals = {'1' :settings.ID_CHANNAL_APK}
-        self.TOKEN = '6743554482:AAHLzpjEdO49BTjsxm5SS3uviYIrRBm5bng'
+        self.channals = {'1' : os.getenv('ID_CHANNAL')}
+        self.TOKEN = os.getenv('TOKEN')
     
     def run(self):
         
@@ -28,6 +29,6 @@ class tgBot():
             db = DB()
             news = f'<b>{article.title}</b>\n\n{article.summary}\n\n\n<a href="{article.url}">Читать источник</a>'
             category_id = str(article.category_id)
-            bot.send_message('599272752',news)
+            bot.send_message(os.getenv('ID_CHANNAL'),news)
             
             db.set_published(article)

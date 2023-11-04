@@ -49,7 +49,11 @@ services:
     volumes:
       - ./persistentdata/huggingface_cache:/django-backend/src/huggingface_cache
       - ./persistentdata/db/sqlite:/django-backend/src/db
-      
+    env_file:
+    - ./persistentdata/settings/.env
+    environment:
+      - TOKEN=${TOKEN}
+      - ID_CHANNAL=${ID_CHANNAL}   
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
     image: celeryworker
 
