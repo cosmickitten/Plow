@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': os.getenv('POSTGRES_DB'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'), # as a POSTGRES_PASSWORD
-        'HOST': 'postgresql', # as the DB's service name in docker-compose.yml
+        'HOST': 'postgresql-db', # as the DB's service name in docker-compose.yml
         'PORT': '', # default
     }
 }

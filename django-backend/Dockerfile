@@ -11,7 +11,7 @@ ENV LC_ALL ru_RU.UTF-8
 COPY ./requirements.txt ./
 RUN pip install --upgrade pip
 RUN pip install  --no-cache-dir -r requirements.txt
-RUN pip install -U python-dotenv psycopg2
+RUN pip install -U python-dotenv psycopg2-binary
 COPY ./src ./src
 #CMD gunicorn -w 3 --chdir ./src proj.wsgi --bind 0.0.0.0:8000
 CMD python ./src/manage.py runserver 0.0.0.0:8000
