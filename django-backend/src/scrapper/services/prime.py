@@ -32,34 +32,35 @@ class Prime(Crowler):
         datum = {}
         soup = BeautifulSoup(self.get_page(url), "lxml")
         article = soup.find("article", class_="article")
-        title = article.find("div", class_="article-header").find(
-            "header").find('div', class_="article-header__title").text
-        body = article.find("div", class_="article-body__content")
-        intro = ''
-        content = ''
-        all_p = body.find_all("p")
-        datetime_str = soup.find("div", class_="layout__date").find('span')[
-            'data-unix'].strip()
-        datetime_obj = datetime.utcfromtimestamp(
-            int(datetime_str)).strftime('%Y-%m-%d %H:%M:%S')
+        if article:
+            title = article.find("div", class_="article-header").find(
+                "header").find('div', class_="article-header__title").text
+            body = article.find("div", class_="article-body__content")
+            intro = ''
+            content = ''
+            all_p = body.find_all("p")
+            datetime_str = soup.find("div", class_="layout__date").find('span')[
+                'data-unix'].strip()
+            datetime_obj = datetime.utcfromtimestamp(
+                int(datetime_str)).strftime('%Y-%m-%d %H:%M:%S')
 
-        for p in all_p:
-            if all_p.index(p) == 0:
-                intro += p.text.strip()
-            else:
-                content = content + p.text
-        index = intro.find('.')
-        intro = intro[index+2::]
+            for p in all_p:
+                if all_p.index(p) == 0:
+                    intro += p.text.strip()
+                else:
+                    content = content + p.text
+            index = intro.find('.')
+            intro = intro[index+2::]
 
-        
-        datum = {
-                        'url':url, 
-                        'domain_id':'3',  
-                        'title':title,
-                        'intro':intro, 
-                        'content':content, 
-                        'time':datetime_obj,
-                        'category_id': 1,
-                        }
-        return datum
+            
+            datum = {
+                            'url':url, 
+                            'domain_id':'3',  
+                            'title':title,
+                            'intro':intro, 
+                            'content':content, 
+                            'time':datetime_obj,
+                            'category_id': 1,
+                            }
+            return datum
 

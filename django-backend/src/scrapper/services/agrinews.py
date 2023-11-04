@@ -58,26 +58,27 @@ class Agrinews(Crowler):
         datum = {}
         soup = BeautifulSoup(self.get_page(url), "lxml")
         article = soup.find("article", class_="single_post")
-        title = article.find(
-            "header", class_="post_header").find_next('h1').text
-        body = article.find("div", class_="post_content")
-        intro = ''
-        content = ''
-        all_p = body.find_all("p")
-        datetime_str = article.find("span", class_="date")["datetime"]
-        datetime_obj = self.convert_date(datetime_str)
-        for p in all_p:
-            content = content + p.text
+        if article:
+            title = article.find(
+                "header", class_="post_header").find_next('h1').text
+            body = article.find("div", class_="post_content")
+            intro = ''
+            content = ''
+            all_p = body.find_all("p")
+            datetime_str = article.find("span", class_="date")["datetime"]
+            datetime_obj = self.convert_date(datetime_str)
+            for p in all_p:
+                content = content + p.text
 
-        
-        datum = {
-                        'url':url, 
-                        'domain_id':'4',  
-                        'title':title,
-                        'intro':intro, 
-                        'content':content, 
-                        'time':datetime_obj,
-                        'category_id': 1
-                        }
-        return datum
+            
+            datum = {
+                            'url':url, 
+                            'domain_id':'4',  
+                            'title':title,
+                            'intro':intro, 
+                            'content':content, 
+                            'time':datetime_obj,
+                            'category_id': 1
+                            }
+            return datum
 

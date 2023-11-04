@@ -40,28 +40,29 @@ class Agroxxi(Crowler):
         datum = {}
         soup = BeautifulSoup(self.get_page(url), "lxml")
         article = soup.find("article")
-        title = article.find('h1', class_='con_heading').text
-        content = ''
-        intro = ''
-        all_p = article.find(
-            "div", class_="articleBody con_text").find_all("p")
-        datetime_str = article.find(
-            "time", class_="con_pubdate col-12 col-sm-6 text-sm-end")['datetime'].strip()
-        datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
-        for p in all_p[:-2]:
-            if all_p.index(p) == 0:
-                intro += p.text.strip()
-            else:
-                content = content + p.text
-        datum = {
-                        'url':url, 
-                        'domain_id':'2',  
-                        'title':title,
-                        'intro':intro, 
-                        'content':content, 
-                        'time':datetime_obj,
-                        'category_id': 1,
-                        }
-        return datum
+        if article:
+            title = article.find('h1', class_='con_heading').text
+            content = ''
+            intro = ''
+            all_p = article.find(
+                "div", class_="articleBody con_text").find_all("p")
+            datetime_str = article.find(
+                "time", class_="con_pubdate col-12 col-sm-6 text-sm-end")['datetime'].strip()
+            datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
+            for p in all_p[:-2]:
+                if all_p.index(p) == 0:
+                    intro += p.text.strip()
+                else:
+                    content = content + p.text
+            datum = {
+                            'url':url, 
+                            'domain_id':'2',  
+                            'title':title,
+                            'intro':intro, 
+                            'content':content, 
+                            'time':datetime_obj,
+                            'category_id': 1,
+                            }
+            return datum
 
        

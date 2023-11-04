@@ -41,29 +41,30 @@ class Agrovesti(Crowler):
         datum = {}
         soup =  BeautifulSoup(self.get_page(url), "lxml")
         article = soup.find("div",  class_="article-main")
-        datetime_str = article.find(
-            "dd", class_="date-published").find("time")['datetime'].strip()
-        # datetime = '2023-09-29 07:58:38'
+        if article:
+            datetime_str = article.find(
+                "dd", class_="date-published").find("time")['datetime'].strip()
+            # datetime = '2023-09-29 07:58:38'
 
-        datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
+            datetime_obj = datetime.strptime(datetime_str, '%Y-%m-%d %H:%M:%S')
 
-        title = article.find("h1",  class_="article-title").text.strip()
-        intro = article.find(
-            "div", class_="article-intro").find("p").text.strip()
-        # удаление блока с соцсетями
-        content = article.find("div", class_="article-full").text[:-51]
+            title = article.find("h1",  class_="article-title").text.strip()
+            intro = article.find(
+                "div", class_="article-intro").find("p").text.strip()
+            # удаление блока с соцсетями
+            content = article.find("div", class_="article-full").text[:-51]
 
-       
-        datum = {
-                        'url':url, 
-                        'domain_id':'1', 
-                        'title':title,
-                        'intro':intro, 
-                        'content':content, 
-                        'time':datetime_obj,
-                        'category_id': 1,
-                        }
-        return datum
+        
+            datum = {
+                            'url':url, 
+                            'domain_id':'1', 
+                            'title':title,
+                            'intro':intro, 
+                            'content':content, 
+                            'time':datetime_obj,
+                            'category_id': 1,
+                            }
+            return datum
 
 
    
