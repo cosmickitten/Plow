@@ -67,6 +67,8 @@ services:
     depends_on:
       - postgresql-db
       - redis
+    env_file:
+      - ./persistentdata/settings/.env # why - see the next step
 
 
   postgresql-db:
