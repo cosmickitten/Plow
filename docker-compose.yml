@@ -36,7 +36,6 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./persistentdata/db/sqlite:/django-backend/src/db
       - ./persistentdata/settings:/django-backend/src/settings
     image: djangobackend
 
@@ -48,7 +47,6 @@ services:
       dockerfile: Dockerfile.torch-cpu
     volumes:
       - ./persistentdata/huggingface_cache:/django-backend/src/huggingface_cache
-      - ./persistentdata/db/sqlite:/django-backend/src/db
     env_file:
     - ./persistentdata/settings/.env
     command: ['celery', '--workdir=./src',  '-A', 'proj', 'worker' ]
@@ -58,17 +56,15 @@ services:
     restart: always
     build: 
       context: ./django-backend
-    volumes: 
-      - ./persistentdata/db/sqlite:/django-backend/src/db
     command: ['celery', '--workdir=./src', '-A', 'proj', 'beat', '-l', 'INFO', '--scheduler', 'django_celery_beat.schedulers:DatabaseScheduler']
     
-  # postgresql-db:
-  #   restart: always
-  #   image: postgres
-  #   volumes:
-  #           - ./persistentdata/db/postgresql:/var/lib/postgresql/data
-  #   env_file:
-  #     - ./postgresql-db/.pg-env # why - see the next step
+  postgresql-db:
+    restart: always
+    image: postgres
+    volumes:
+            - ./persistentdata/db/postgresql:/var/lib/postgresql/data
+    env_file:
+      - ./persistentdata/settings/.pg-env # why - see the next step
   # certbot:
   #   image: certbot/certbot
   #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
