@@ -61,14 +61,14 @@ class RG(Crowler):
                 datetime_obj = datetime.strptime(datetime_str, '%d.%m.%Y %H:%M')
                 for p in all_p:
                     content = content + p.text
-            datum = {
-                            'url':url, 
-                            'domain_id': '5',  
-                            'title':title,
-                            'intro':intro, 
-                            'content':content, 
-                            'article_text' : title + intro + content,
-                            'time':datetime_obj,
-                            'category_id': 1,
-                            }
-            return datum
+        datum = {
+                        'url':url, 
+                        'domain_id': '5',  
+                        'title':title,
+                        'intro':intro, 
+                        'content':content, 
+                        'article_text' : title + intro + content,
+                        'time':datetime_obj,
+                        'category_id': 1,
+                        }
+        return datum
