@@ -40,14 +40,15 @@ class RG(Crowler):
             article = soup.find("div", class_=re.compile('Page_main'))
             if article is None:
                 article = soup.find("main", class_=re.compile('PageArticle_main'))
-                title = article.find('h1', class_=re.compile('PageArticleTitle_title')).text
-                datetime_str = article.find("span", class_=re.compile("PageArticleTitle_day")).string
-                intro = article.find('h3', class_=re.compile('PageArticleTitle_lead')).text
-                text_block = article.find('article', class_=re.compile('PageArticleContent_article'))
-                all_p = text_block.find_all("p")
-                datetime_obj = datetime.strptime(datetime_str, '%d.%m.%Y')
-                for p in all_p:
-                    content = content + p.text
+                if article is not None:
+                    title = article.find('h1', class_=re.compile('PageArticleTitle_title')).text
+                    datetime_str = article.find("span", class_=re.compile("PageArticleTitle_day")).string
+                    intro = article.find('h3', class_=re.compile('PageArticleTitle_lead')).text
+                    text_block = article.find('article', class_=re.compile('PageArticleContent_article'))
+                    all_p = text_block.find_all("p")
+                    datetime_obj = datetime.strptime(datetime_str, '%d.%m.%Y')
+                    for p in all_p:
+                        content = content + p.text
             else:
 
                 #print(article)
