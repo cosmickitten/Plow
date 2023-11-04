@@ -37,7 +37,7 @@ class RG(Crowler):
         content = ''
         soup = BeautifulSoup(self.get_page(url), "lxml")
         article = soup.find("div", class_=re.compile('Page_main'))
-        if article:
+        if article is None:
             article = soup.find("main", class_=re.compile('PageArticle_main'))
             title = article.find('h1', class_=re.compile('PageArticleTitle_title')).text
             datetime_str = article.find("span", class_=re.compile("PageArticleTitle_day")).string
