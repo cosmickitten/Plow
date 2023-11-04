@@ -43,7 +43,7 @@ class Article(models.Model):
 
 
 class Domain(models.Model):
-    name = models.URLField(max_length=20, verbose_name='Сайт',unique=True)
+    name = models.URLField(max_length=50, verbose_name='Сайт',unique=True)
    
 
     def __str__(self) -> str:
