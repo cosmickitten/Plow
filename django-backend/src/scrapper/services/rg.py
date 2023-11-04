@@ -37,7 +37,7 @@ class RG(Crowler):
         content = ''
         soup = BeautifulSoup(self.get_page(url), "lxml")
         error = soup.find("div", class_=re.compile('PageDefaultErrorContent'))
-        if not error:
+        if  error is None:
             article = soup.find("div", class_=re.compile('Page_main'))
             try:
                 if article is None:
